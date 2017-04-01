@@ -25,18 +25,29 @@ namespace VpApp.Models
         [Display(Name = "Пароль")]
         [MaxLength(50, ErrorMessage = "Превышена максимальная длина записи")]
         public string Password { get; set; }
+        // Телефон
+        [Display(Name = "Телефон")]
+        [MaxLength(50, ErrorMessage = "Превышена максимальная длина записи")]
+        public ICollection<Telefon> Telefons { get; set; }
+        public Telefon Telefon { get; set; }
         // Должность
         [Display(Name = "Должность")]
-        [MaxLength(50, ErrorMessage = "Превышена максимальная длина записи")]
-        public string Position { get; set; }
+        
+        public Guid? PositionId { get; set; }
+        public Position Position { get; set; }
         // Отдел
         [Display(Name = "Отдел")]
-        public int? DepartmentId { get; set; }
+        public Guid? DepartmentId { get; set; }
         public Department Department { get; set; }
         // Статус
         [Required]
         [Display(Name = "Статус")]
-        public int RoleId { get; set; }
+        public Guid RoleId { get; set; }
         public Role Role { get; set; }
+
+        public User()
+        {
+            Telefons = new List<Telefon>();
+        }
     }
 }
