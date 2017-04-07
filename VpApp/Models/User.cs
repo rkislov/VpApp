@@ -41,7 +41,7 @@ namespace VpApp.Models
         public Department Department { get; set; }
         // Статус
         [Required]
-        [Display(Name = "Статус")]
+        [Display(Name = "Должность")]
         public Guid RoleId { get; set; }
         public Role Role { get; set; }
 

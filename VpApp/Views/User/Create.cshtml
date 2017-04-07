@@ -1,0 +1,100 @@
+﻿@model VpApp.Models.User
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Создание нового пользователя</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Новый пользователь</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Login)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Login)
+            @Html.ValidationMessageFor(model => model.Login)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PositionId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.PositionId, ViewBag.Positions as SelectList)
+            @Html.ValidationMessageFor(model => model.Position)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DepartmentId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.DepartmentId, ViewBag.Departments as SelectList)
+            @Html.ValidationMessageFor(model => model.DepartmentId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RoleId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.RoleId, ViewBag.Roles as SelectList)
+            @Html.ValidationMessageFor(model => model.RoleId)
+        </div>
+        <div id="telBlock">
+            <div class="telItem">
+                <h4>Телефон № 1</h4>
+                <div>
+                    <label>Номер</label>
+                    <div>
+                        <input type="text" name="Telefons[0].tel" />
+                    </div>
+                </div>
+            </div>
+
+            </div>
+            <p><a class="addLink">Добавить еще номер</a></p>
+
+            <p>
+                <input type="submit" value="Добавить" />
+            </p>
+</fieldset>
+}
+
+@section Scripts {
+<script>
+       $(function () {
+           var i = 0;
+           $('.addLink').click(function()
+           {
+               i++;
+               var html2Add= "<div class='telItem'>"+
+            "<h4>Телефон № "+(i+1) + "</h4>"+
+            "<div><label>Номер</label><div>"+
+                    "<input type='text' name='Telefons["+i+"].tel' />"+
+                "</div></div></div>";
+               $('#telBlock').append(html2Add);
+           })
+       })
+</script>
+    @Scripts.Render("~/bundles/jqueryval")
+}

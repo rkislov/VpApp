@@ -1,0 +1,46 @@
+﻿@model VpApp.Models.LogViewModel
+
+@{
+    Layout= null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <title>Логин</title>
+</head>
+<body>
+
+    <div class="panel">
+        <div class="panel-heading">
+            <h3>Вход в систему</h3>
+        </div>
+        <div class="panel-body">
+            <p class="lead">Пожалуйста, войдите в систему</p>
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary()
+                <div class="form-group">
+                    <label>Имя пользователя:</label>
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Пароль:</label>
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>@Html.CheckBoxFor(m => m.RememberMe) Запомнить?</label>
+
+                    </div>
+                </div>
+                <br />
+                <input type="submit" value="Войти" class="btn btn-primary" />
+            }
+        </div>
+    </div>
+</body>
+</html>
